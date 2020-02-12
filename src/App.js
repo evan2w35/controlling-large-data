@@ -1,11 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Chunky from "./Chunking";
-import Chunky2 from "./ChunkClass";
-
 
 function App() {
   return (
@@ -25,7 +23,6 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Chunky />
-        {/* <Chunky2 /> */}
       </header>
     </div>
   );
