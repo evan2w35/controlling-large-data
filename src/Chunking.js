@@ -25,10 +25,8 @@ export default function Chunky(props) {
     finish = +new Date();
     setNewData(storedData);
     // setCompleted(true);
-    console.log("Started at: ", start);
-    console.log("Finished at: ", finish);
-    console.log("Total Time: ", finish - start);
-    console.log("Records moved: ", count);
+    console.log("Total Time in MS: ", finish - start);
+    console.log("Records touched: ", count);
     toast.update("fetching", {
       type: toast.TYPE.SUCCESS,
       autoClose: 3000,
@@ -36,14 +34,19 @@ export default function Chunky(props) {
     });
   };
   const HandleSingle = item => {
-    console.log(item);
     count += 1;
-    storedData.push(item);
+    let itemData = item.data;
+    let relaventData = {};
+    relaventData.url = itemData.url;
+    console.log(relaventData);
+    storedData.push(relaventData);
   };
   const ProcessArray = (data, changer, callback) => {
-    console.log(data);
-    var maxTime = 200;
-    var delay = 50;
+    console.log(data.length);
+    // time in mil secs to send things through
+    var maxTime = 10;
+    // time in mil secs between sedding items
+    var delay = 1000;
     var queue = data.slice();
     setTimeout(function() {
       var endTime = +new Date() + maxTime;
