@@ -6,26 +6,29 @@ import testData1 from "./TyphoonHaiyan.json";
 export default function Chunky(props) {
   const [newData, setNewData] = useState([]);
   const [complete, setCompleted] = useState(false);
-  var arr = new Array(10000);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = i;
-  }
+  //   var arr = new Array(1000000);
+  var arr = testData1.result_content.data;
+  //   for (let i = 0; i < arr.length; i++) {
+  //     arr[i] = i;
+  //   }
 
   useEffect(() => {
-    // ProcessArray(testData1.result_content.data, HandleSingle, Done);
     ProcessArray(arr, HandleSingle, Done);
   }, []);
 
-  var start, finish;
+  var start,
+    finish,
+    count = 0;
   var storedData = [];
 
   const Done = () => {
     finish = +new Date();
     setNewData(storedData);
-    setCompleted(true);
+    // setCompleted(true);
     console.log("Started at: ", start);
     console.log("Finished at: ", finish);
     console.log("Total Time: ", finish - start);
+    console.log("Records moved: ", count);
     toast.update("fetching", {
       type: toast.TYPE.SUCCESS,
       autoClose: 3000,
@@ -34,11 +37,13 @@ export default function Chunky(props) {
   };
   const HandleSingle = item => {
     console.log(item);
+    count += 1;
     storedData.push(item);
   };
   const ProcessArray = (data, changer, callback) => {
-    var maxTime = 30;
-    var delay = 5000;
+    console.log(data);
+    var maxTime = 200;
+    var delay = 50;
     var queue = data.slice();
     setTimeout(function() {
       var endTime = +new Date() + maxTime;
