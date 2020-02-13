@@ -45,7 +45,7 @@ export default function Chunky(props) {
     console.log(data.length);
     // time in mil secs to send things through
     var maxTime = 50;
-    // time in mil secs between sedding items
+    // time in mil secs between sending items
     var delay = 3000;
     var queue = data.slice();
     setTimeout(() => {
