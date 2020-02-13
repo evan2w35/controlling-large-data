@@ -44,11 +44,11 @@ export default function Chunky(props) {
   const ProcessArray = (data, changer, callback) => {
     console.log(data.length);
     // time in mil secs to send things through
-    var maxTime = 100;
+    var maxTime = 10;
     // time in mil secs between sedding items
-    var delay = 100;
+    var delay = 5000;
     var queue = data.slice();
-    setTimeout(function() {
+    setTimeout(() => {
       var endTime = +new Date() + maxTime;
       do {
         changer(queue.shift());
